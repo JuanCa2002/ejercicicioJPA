@@ -23,6 +23,6 @@ data class AuthorBook(
 
     @ManyToOne
     @JoinColumn(name= "id_autor")
-    val author: Author,
+    var author: Author,
 
 ):Serializable
