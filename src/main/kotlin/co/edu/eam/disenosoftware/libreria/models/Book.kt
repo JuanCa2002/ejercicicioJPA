@@ -23,9 +23,13 @@ data class Book(
     @Column(name= "isbn_libro")
     var isbn: String,
 
+    @Column(name= "cantidad")
+    var stock: Int,
+
     @ManyToOne
     @JoinColumn(name= "id_editorial")
     val publisher: Publisher,
+
 
     ):Serializable
 

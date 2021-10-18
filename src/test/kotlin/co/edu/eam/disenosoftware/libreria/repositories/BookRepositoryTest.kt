@@ -23,7 +23,7 @@ class BookRepositoryTest {
     fun createTest(){
         val publisher=  Publisher("Norma",12)
         entityManager.persist(publisher)
-        bookRepository.create(Book("123","Harry Poter","444",publisher))
+        bookRepository.create(Book("123","Harry Poter","444",12,publisher))
         val book = entityManager.find(Book::class.java,  "123")
         Assertions.assertNotNull(book)
         Assertions.assertEquals("Harry Poter", book.nombre)
@@ -36,7 +36,7 @@ class BookRepositoryTest {
     fun findTest() {
         val publisher=  Publisher("Norma",12)
         entityManager.persist(publisher)
-        entityManager.persist(Book("123","Harry Poter","444",publisher))
+        entityManager.persist(Book("123","Harry Poter","444",11,publisher))
 
         val book = bookRepository.find("123")
 
@@ -51,7 +51,7 @@ class BookRepositoryTest {
     fun testDelete(){
         val publisher=  Publisher("Norma",12)
         entityManager.persist(publisher)
-        entityManager.persist(Book("123","Harry Poter","444",publisher))
+        entityManager.persist(Book("123","Harry Poter","444",9,publisher))
 
 
         bookRepository.delete("123")
@@ -65,7 +65,7 @@ class BookRepositoryTest {
     fun testUpdate() {
         val publisher=  Publisher("Norma",12)
         entityManager.persist(publisher)
-        entityManager.persist(Book("123","Harry Poter","444",publisher))
+        entityManager.persist(Book("123","Harry Poter","444",8,publisher))
         entityManager.flush()
 
         //ejecutando...
@@ -88,9 +88,9 @@ class BookRepositoryTest {
         entityManager.persist(publisherOne)
         val publisherTwo= Publisher("Prisma",2)
         entityManager.persist(publisherTwo)
-        entityManager.persist(Book("111","Harry Potter","444",publisherOne))
-        entityManager.persist(Book("222","Alicia en el pais de las maravillas","555",publisherOne))
-        entityManager.persist((Book("333","Los juegos del hambre","666",publisherTwo)))
+        entityManager.persist(Book("111","Harry Potter","444",2,publisherOne))
+        entityManager.persist(Book("222","Alicia en el pais de las maravillas","555",5,publisherOne))
+        entityManager.persist((Book("333","Los juegos del hambre","666",10,publisherTwo)))
 
         val listOne= bookRepository.findByPublisher(1)
         val listTwo= bookRepository.findByPublisher(2)
