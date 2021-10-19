@@ -109,7 +109,9 @@ class BorrowServiceTest {
 
         borrowService.createBorrow(borrowTwo)
         val borrow= entityManager.find(Borrow::class.java,borrowTwo.id)
+        val book= entityManager.find(Book::class.java,bookTwo.codigo)
         Assertions.assertNotNull(borrow)
+        Assertions.assertEquals(9,book.stock)
         Assertions.assertEquals("Juan",borrow.user.name)
         Assertions.assertEquals("Juego de tronos",borrow.book.nombre)
 
