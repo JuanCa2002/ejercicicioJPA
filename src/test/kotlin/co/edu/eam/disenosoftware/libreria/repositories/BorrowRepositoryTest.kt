@@ -1,9 +1,9 @@
 package co.edu.eam.disenosoftware.libreria.repositories
 
-import co.edu.eam.disenosoftware.libreria.models.Book
-import co.edu.eam.disenosoftware.libreria.models.Borrow
-import co.edu.eam.disenosoftware.libreria.models.Publisher
-import co.edu.eam.disenosoftware.libreria.models.User
+import co.edu.eam.disenosoftware.libreria.models.entities.Book
+import co.edu.eam.disenosoftware.libreria.models.entities.Borrow
+import co.edu.eam.disenosoftware.libreria.models.entities.Publisher
+import co.edu.eam.disenosoftware.libreria.models.entities.User
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import java.util.*
@@ -35,11 +35,11 @@ class BorrowRepositoryTest {
         Assertions.assertNotNull(borrow)
         val fechaAssert= Date(2019,2,24)
         Assertions.assertEquals(fechaAssert,borrow.dateTime)
-        Assertions.assertEquals("Harry Poter",borrow.book.nombre)
-        Assertions.assertEquals("444",borrow.book.isbn)
-        Assertions.assertEquals("Norma",borrow.book.publisher.name)
-        Assertions.assertEquals("Juan",borrow.user.name)
-        Assertions.assertEquals("Torres",borrow.user.lastName)
+        Assertions.assertEquals("Harry Poter",borrow.book?.nombre)
+        Assertions.assertEquals("444",borrow.book?.isbn)
+        Assertions.assertEquals("Norma",borrow.book?.publisher?.name)
+        Assertions.assertEquals("Juan",borrow.user?.name)
+        Assertions.assertEquals("Torres",borrow.user?.lastName)
     }
     @Test
     fun findTest(){
@@ -103,7 +103,7 @@ class BorrowRepositoryTest {
         entityManager.persist(userOne)
         val userTwo= User("Pedro","Juarez","888")
         entityManager.persist(userTwo)
-        val publisher=Publisher("Norma",14)
+        val publisher= Publisher("Norma",14)
         entityManager.persist(publisher)
         val bookOne= Book("123","Harry Potter","444",20,publisher)
         entityManager.persist(bookOne)
@@ -119,8 +119,8 @@ class BorrowRepositoryTest {
 
         Assertions.assertEquals(2,listOne.size)
         Assertions.assertEquals(1,listTwo.size)
-        listOne.forEach {Assertions.assertEquals("111",it.user.identification) }
-        listTwo.forEach {Assertions.assertEquals("888",it.user.identification) }
+        listOne.forEach {Assertions.assertEquals("111",it.user?.identification) }
+        listTwo.forEach {Assertions.assertEquals("888",it.user?.identification) }
     }
 
     @Test
@@ -129,7 +129,7 @@ class BorrowRepositoryTest {
         entityManager.persist(userOne)
         val userTwo= User("Pedro","Juarez","888")
         entityManager.persist(userTwo)
-        val publisher=Publisher("Norma",14)
+        val publisher= Publisher("Norma",14)
         entityManager.persist(publisher)
         val bookOne= Book("123","Harry Potter","444",15,publisher)
         entityManager.persist(bookOne)
@@ -150,9 +150,9 @@ class BorrowRepositoryTest {
         Assertions.assertEquals(2,listOne.size)
         Assertions.assertEquals(1,listTwo.size)
         Assertions.assertEquals(1,listThree.size)
-        listOne.forEach {Assertions.assertEquals("123",it.book.codigo) }
-        listTwo.forEach {Assertions.assertEquals("421",it.book.codigo) }
-        listThree.forEach {Assertions.assertEquals("821",it.book.codigo) }
+        listOne.forEach {Assertions.assertEquals("123",it.book?.codigo) }
+        listTwo.forEach {Assertions.assertEquals("421",it.book?.codigo) }
+        listThree.forEach {Assertions.assertEquals("821",it.book?.codigo) }
     }
 
 }

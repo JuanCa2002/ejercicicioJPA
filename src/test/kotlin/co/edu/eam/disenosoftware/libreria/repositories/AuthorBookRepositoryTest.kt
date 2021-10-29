@@ -1,15 +1,14 @@
 package co.edu.eam.disenosoftware.libreria.repositories
 
-import co.edu.eam.disenosoftware.libreria.models.Book
-import co.edu.eam.disenosoftware.libreria.models.AuthorBook
-import co.edu.eam.disenosoftware.libreria.models.Publisher
-import co.edu.eam.disenosoftware.libreria.models.Author
+import co.edu.eam.disenosoftware.libreria.models.entities.Book
+import co.edu.eam.disenosoftware.libreria.models.entities.AuthorBook
+import co.edu.eam.disenosoftware.libreria.models.entities.Publisher
+import co.edu.eam.disenosoftware.libreria.models.entities.Author
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.transaction.annotation.Transactional
-import java.util.*
 import javax.persistence.EntityManager
 
 @SpringBootTest
@@ -34,7 +33,7 @@ class AuthorBookRepositoryTest {
         Assertions.assertNotNull(authorBook)
         Assertions.assertEquals("Harry Poter",authorBook.book.nombre)
         Assertions.assertEquals("444",authorBook.book.isbn)
-        Assertions.assertEquals("Norma",authorBook.book.publisher.name)
+        Assertions.assertEquals("Norma",authorBook.book.publisher?.name)
         Assertions.assertEquals("Juan",authorBook.author.name)
         Assertions.assertEquals("Torres",authorBook.author.lastName)
     }

@@ -1,6 +1,6 @@
 package co.edu.eam.disenosoftware.libreria.repositories
 
-import co.edu.eam.disenosoftware.libreria.models.Author
+import co.edu.eam.disenosoftware.libreria.models.entities.Author
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional

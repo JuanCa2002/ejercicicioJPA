@@ -1,8 +1,8 @@
 package co.edu.eam.disenosoftware.libreria.services
 
 import co.edu.eam.disenosoftware.libreria.exceptions.BusinessException
-import co.edu.eam.disenosoftware.libreria.models.Book
-import co.edu.eam.disenosoftware.libreria.models.Publisher
+import co.edu.eam.disenosoftware.libreria.models.entities.Book
+import co.edu.eam.disenosoftware.libreria.models.entities.Publisher
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,11 +24,11 @@ class BookServiceTest {
     fun createBookAlreadyExistById(){
         val publisher=  Publisher("Norma",12)
         entityManager.persist(publisher)
-        val bookOne=Book("123","Harry Poter","444",12,publisher)
+        val bookOne= Book("123","Harry Poter","444",12,publisher)
         entityManager.persist(bookOne)
-        val bookTwo=Book("123","Juego de tronos","666",11,publisher)
+        val bookTwo= Book("123","Juego de tronos","666",11,publisher)
         try {
-            bookService.createBook(bookTwo)
+            bookService.createBook(bookTwo,12)
             Assertions.fail()
         }catch (e: BusinessException){
             Assertions.assertEquals("This book already exist",e.message)
@@ -39,11 +39,11 @@ class BookServiceTest {
     fun createBookAlreadyExistByName(){
         val publisher=  Publisher("Norma",12)
         entityManager.persist(publisher)
-        val bookOne=Book("123","Harry Poter","444",12,publisher)
+        val bookOne= Book("123","Harry Poter","444",12,publisher)
         entityManager.persist(bookOne)
-        val bookTwo=Book("222","Harry Poter","666",11,publisher)
+        val bookTwo= Book("222","Harry Poter","666",11,publisher)
         try {
-            bookService.createBook(bookTwo)
+            bookService.createBook(bookTwo,12)
             Assertions.fail()
         }catch (e: BusinessException){
             Assertions.assertEquals("This book with this name already exist",e.message)
@@ -54,16 +54,16 @@ class BookServiceTest {
     fun createBookHappyPath(){
         val publisher=  Publisher("Norma",12)
         entityManager.persist(publisher)
-        val bookOne=Book("123","Harry Poter","444",12,publisher)
+        val bookOne= Book("123","Harry Poter","444",12,publisher)
         entityManager.persist(bookOne)
-        val bookTwo=Book("222","Juego de tronos","666",11,publisher)
+        val bookTwo= Book("222","Juego de tronos","666",11,publisher)
 
-        bookService.createBook(bookTwo)
+        bookService.createBook(bookTwo,12)
         val book= entityManager.find(Book::class.java,bookTwo.codigo)
         Assertions.assertNotNull(book)
         Assertions.assertEquals("Juego de tronos",book.nombre)
         Assertions.assertEquals("666",book.isbn)
-        Assertions.assertEquals("Norma",book.publisher.name)
+        Assertions.assertEquals("Norma",book.publisher?.name)
 
 
     }
@@ -72,7 +72,7 @@ class BookServiceTest {
     fun returnBookThisBookNotExist(){
         val publisher=  Publisher("Norma",12)
         entityManager.persist(publisher)
-        val bookOne=Book("123","Harry Poter","444",12,publisher)
+        val bookOne= Book("123","Harry Poter","444",12,publisher)
         try {
             bookService.returnBook(bookOne)
             Assertions.fail()
@@ -85,7 +85,7 @@ class BookServiceTest {
     fun returnBookHappyPath(){
         val publisher=  Publisher("Norma",12)
         entityManager.persist(publisher)
-        val bookOne=Book("123","Harry Poter","444",12,publisher)
+        val bookOne= Book("123","Harry Poter","444",12,publisher)
         entityManager.persist(bookOne)
 
         bookService.returnBook(bookOne)

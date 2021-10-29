@@ -1,7 +1,7 @@
 package co.edu.eam.disenosoftware.libreria.repositories
 
-import co.edu.eam.disenosoftware.libreria.models.Book
-import co.edu.eam.disenosoftware.libreria.models.Publisher
+import co.edu.eam.disenosoftware.libreria.models.entities.Book
+import co.edu.eam.disenosoftware.libreria.models.entities.Publisher
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -28,8 +28,8 @@ class BookRepositoryTest {
         Assertions.assertNotNull(book)
         Assertions.assertEquals("Harry Poter", book.nombre)
         Assertions.assertEquals("444", book.isbn)
-        Assertions.assertEquals("Norma", book.publisher.name)
-        Assertions.assertEquals(12, book.publisher.code)
+        Assertions.assertEquals("Norma", book.publisher?.name)
+        Assertions.assertEquals(12, book.publisher?.code)
     }
 
     @Test
@@ -96,8 +96,8 @@ class BookRepositoryTest {
         val listTwo= bookRepository.findByPublisher(2)
         Assertions.assertEquals(2,listOne.size)
         Assertions.assertEquals(1,listTwo.size)
-        listOne.forEach {Assertions.assertEquals(1,it.publisher.code) }
-        listTwo.forEach {Assertions.assertEquals(2,it.publisher.code) }
+        listOne.forEach {Assertions.assertEquals(1,it.publisher?.code) }
+        listTwo.forEach {Assertions.assertEquals(2,it.publisher?.code) }
     }
 
 }

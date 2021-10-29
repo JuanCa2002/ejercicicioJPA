@@ -1,6 +1,6 @@
 package co.edu.eam.disenosoftware.libreria.repositories
 
-import co.edu.eam.disenosoftware.libreria.models.User
+import co.edu.eam.disenosoftware.libreria.models.entities.User
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
@@ -16,7 +16,7 @@ class UserRepository {
         em.persist(user)
     }
 
-    fun find(identification:String): User?{
+    fun find(identification:String?): User?{
         return em.find(User::class.java,identification)
     }
 

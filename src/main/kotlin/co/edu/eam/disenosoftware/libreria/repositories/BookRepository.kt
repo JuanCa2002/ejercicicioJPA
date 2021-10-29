@@ -3,8 +3,7 @@ package co.edu.eam.disenosoftware.libreria.repositories
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
-import co.edu.eam.disenosoftware.libreria.models.Book
-import java.util.concurrent.Flow
+import co.edu.eam.disenosoftware.libreria.models.entities.Book
 import javax.persistence.EntityManager
 
 @Component
@@ -20,11 +19,11 @@ class BookRepository {
         return query.resultList as List<Book>
     }
 
-    fun create(book:Book){
+    fun create(book: Book){
        em.persist(book)
     }
 
-    fun find(codigo:String):Book?{
+    fun find(codigo:String?): Book?{
        return em.find(Book::class.java,codigo)
     }
     fun findByName(name: String): Book? {
