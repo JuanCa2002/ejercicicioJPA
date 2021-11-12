@@ -1,4 +1,4 @@
-package co.edu.eam.disenosoftware.libreria.models
+package co.edu.eam.disenosoftware.libreria.models.entities
 
 import java.io.Serializable
 import javax.persistence.Column
@@ -18,5 +18,6 @@ data class Author(
 
      @Column(name= "nombre")
      var name: String,
+
 
      ):Serializable

@@ -1,8 +1,7 @@
-package co.edu.eam.disenosoftware.libreria.models
+package co.edu.eam.disenosoftware.libreria.models.entities
 
 import java.io.Serializable
 import java.util.*
-import javax.persistence.*
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.persistence.Column
@@ -14,20 +13,20 @@ import javax.persistence.Table
 @Entity
 @Table(name= "prestamo")
 data class Borrow(
-     @Id
+    @Id
      @Column(name= "id")
      val id: Int,
 
-     @Column(name= "fecha_prestamo")
+    @Column(name= "fecha_prestamo")
      var dateTime: Date,
 
-     @ManyToOne
+    @ManyToOne
      @JoinColumn(name= "id_libro")
-     val book: Book,
+     var book: Book?,
 
-     @ManyToOne
+    @ManyToOne
      @JoinColumn(name= "id_usuario")
-     val user: User,
+     var user: User?,
 
 
-):Serializable
+    ):Serializable

@@ -1,6 +1,5 @@
-package co.edu.eam.disenosoftware.libreria.models
+package co.edu.eam.disenosoftware.libreria.models.entities
 import java.io.Serializable
-import javax.persistence.*
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Id
@@ -15,7 +14,7 @@ import javax.persistence.ManyToOne
 data class Book(
     @Id
     @Column(name = "codigo_libro")
-    val codigo: String,
+    var codigo: String?=" ",
 
     @Column(name= "nombre_libro")
     var nombre: String,
@@ -23,9 +22,13 @@ data class Book(
     @Column(name= "isbn_libro")
     var isbn: String,
 
+    @Column(name= "cantidad")
+    var stock: Int,
+
     @ManyToOne
     @JoinColumn(name= "id_editorial")
-    val publisher: Publisher,
+    var publisher: Publisher?,
+
 
     ):Serializable
 

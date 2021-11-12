@@ -1,7 +1,6 @@
-package co.edu.eam.disenosoftware.libreria.models
+package co.edu.eam.disenosoftware.libreria.models.entities
 
 import java.io.Serializable
-import javax.persistence.*
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.persistence.Column
@@ -23,6 +22,6 @@ data class AuthorBook(
 
     @ManyToOne
     @JoinColumn(name= "id_autor")
-    val author: Author,
+    var author: Author,
 
-):Serializable
+    ):Serializable

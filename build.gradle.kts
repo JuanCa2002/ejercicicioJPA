@@ -32,6 +32,12 @@ tasks.withType<KotlinCompile> {
 		jvmTarget = "11"
 	}
 }
+tasks.getByName<Jar>("jar") {
+	enabled = false
+	manifest {
+		attributes["Main-Class"] = "co.edu.eam.disenosoftware.libreria.LibreriaApplication"
+	}
+}
 
 tasks.withType<Test> {
 	useJUnitPlatform()
