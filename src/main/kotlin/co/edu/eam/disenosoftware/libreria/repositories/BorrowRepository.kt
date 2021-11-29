@@ -2,6 +2,7 @@ package co.edu.eam.disenosoftware.libreria.repositories
 
 import co.edu.eam.disenosoftware.libreria.models.entities.Borrow
 import co.edu.eam.disenosoftware.libreria.models.entities.User
+import co.edu.eam.disenosoftware.libreria.models.entities.Book
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
@@ -28,6 +29,12 @@ class BorrowRepository {
         val query= em.createQuery("SELECT bor.user FROM Borrow bor WHERE bor.book.codigo =: codigoLibro")
         query.setParameter("codigoLibro",codigo)
         return query.resultList as List<User>
+    }
+
+    fun findBookByUser(codigo:String):List<Book>{
+        val query= em.createQuery("SELECT bor.book FROM Borrow bor WHERE bor.user.identification =: codigoUsuario")
+        query.setParameter("codigoUsuario",codigo)
+        return query.resultList as List<Book>
     }
 
     fun create(borrow: Borrow){

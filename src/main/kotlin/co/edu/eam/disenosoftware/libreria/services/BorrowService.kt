@@ -85,6 +85,17 @@ class BorrowService {
         return listUsersByBook
     }
 
+    fun findBookByUser(codeUser: String): List<Book>{
+        var userById= userRepository.find(codeUser)
+
+        if (userById == null){
+            throw BusinessException("This user does not exist in the system")
+        }
+
+        var listBooksByUser= borrowRepository.findBookByUser(codeUser)
+        return listBooksByUser
+    }
+
     fun returnBook(idBorrow: Int){
 
         val borrow= borrowRepository.find(idBorrow)
