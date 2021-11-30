@@ -20,5 +20,9 @@ class PublisherService {
         }
         publisherRepository.create(publisher)
     }
+    fun getAllPublishers():List<Publisher>{
+        val listPublishers= publisherRepository.getAllPublishers()
+        return listPublishers
+    }
 
 }

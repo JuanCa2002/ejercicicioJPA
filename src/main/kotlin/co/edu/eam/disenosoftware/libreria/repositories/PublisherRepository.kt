@@ -1,5 +1,6 @@
 package co.edu.eam.disenosoftware.libreria.repositories
 
+import co.edu.eam.disenosoftware.libreria.models.entities.Borrow
 import co.edu.eam.disenosoftware.libreria.models.entities.Publisher
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
@@ -11,6 +12,11 @@ import javax.persistence.EntityManager
 class PublisherRepository {
     @Autowired
     lateinit var em: EntityManager
+
+    fun getAllPublishers():List<Publisher>{
+        val query= em.createQuery("SELECT pub FROM Publisher pub")
+        return query.resultList as List<Publisher>
+    }
 
     fun create(publisher: Publisher){
         em.persist(publisher)
