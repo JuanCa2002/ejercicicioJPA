@@ -54,5 +54,10 @@ class BookService {
         bookRepository.update(book)
     }
 
+    fun getAllBooks():List<Book>{
+        val listBooks= bookRepository.getAllBooks()
+        return listBooks
+    }
+
 
 }

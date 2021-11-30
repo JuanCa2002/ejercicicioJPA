@@ -19,5 +19,8 @@ class UserService {
         }
         userRepository.create(user)
     }
-
+    fun getAllUsers():List<User>{
+        val listUsers= userRepository.getAllUsers()
+        return listUsers
+    }
 }

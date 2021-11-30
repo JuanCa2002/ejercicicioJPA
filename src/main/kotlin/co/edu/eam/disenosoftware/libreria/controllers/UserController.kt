@@ -37,6 +37,12 @@ class UserController {
         return listBooks
     }
 
+    @GetMapping
+    fun getAllUsers():List<User>{
+        val listUsers= userService.getAllUsers()
+        return listUsers
+    }
+
 
 
 

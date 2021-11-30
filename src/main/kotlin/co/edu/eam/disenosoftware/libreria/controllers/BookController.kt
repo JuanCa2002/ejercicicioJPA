@@ -34,4 +34,10 @@ class BookController {
         val listUsers= borrowService.findUserByBook(idBook)
         return listUsers
     }
+
+    @GetMapping
+    fun getAllBooks():List<Book>{
+        val listBooks= bookService.getAllBooks()
+        return listBooks
+    }
 }

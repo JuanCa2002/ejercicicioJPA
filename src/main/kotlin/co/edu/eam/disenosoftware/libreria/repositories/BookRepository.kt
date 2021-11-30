@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 import co.edu.eam.disenosoftware.libreria.models.entities.Book
+import co.edu.eam.disenosoftware.libreria.models.entities.User
 import javax.persistence.EntityManager
 
 @Component
@@ -16,6 +17,11 @@ class BookRepository {
     fun findByPublisher(code:Int):List<Book>{
        val query= em.createQuery("SELECT boo FROM Book boo WHERE boo.publisher.code=:codePublisher")
        query.setParameter("codePublisher",code)
+        return query.resultList as List<Book>
+    }
+
+    fun getAllBooks():List<Book>{
+        val query= em.createQuery("SELECT boo FROM Book boo")
         return query.resultList as List<Book>
     }
 

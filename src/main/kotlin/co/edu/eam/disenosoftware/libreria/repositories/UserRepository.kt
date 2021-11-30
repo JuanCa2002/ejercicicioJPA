@@ -1,5 +1,6 @@
 package co.edu.eam.disenosoftware.libreria.repositories
 
+import co.edu.eam.disenosoftware.libreria.models.entities.Publisher
 import co.edu.eam.disenosoftware.libreria.models.entities.User
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
@@ -11,6 +12,11 @@ import javax.persistence.EntityManager
 class UserRepository {
     @Autowired
     lateinit var em: EntityManager
+
+    fun getAllUsers():List<User>{
+        val query= em.createQuery("SELECT us FROM User us")
+        return query.resultList as List<User>
+    }
 
     fun create(user: User){
         em.persist(user)
